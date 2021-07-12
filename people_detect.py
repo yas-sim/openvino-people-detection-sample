@@ -37,7 +37,7 @@ class openvino_model:
         for img, bname, bshape in zip(args, self.iblob_name, self.iblob_shape):
             n,c,h,w = bshape
             img = cv2.resize(img, (w,h))
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # OMZ models expect BGR image input
             img = img.transpose((2,0,1))
             img = img.reshape((n,c,h,w))
             inputs[bname] = img
