@@ -6,6 +6,7 @@ A simple OpenVINO Python sample code.
 - age/gender estimation  
 - people detection  
 - human pose estimation  
+![demo](./resources/demo.gif)  
 
 ### Prerequisites:  
 - '**pose_estimation**' Python module  
@@ -14,4 +15,4 @@ You need to build **pose_estimation** module with `build_demos` script in OpenVI
  cd $INTEL_OPENVINO_DIR/deployment_tools/open_model_zoo/demos/build_demos.sh -DENABLE_PYTHON=ON  
  ```
 
-![demo](./resources/demo.gif)
+
