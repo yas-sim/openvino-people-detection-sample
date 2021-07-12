@@ -13,3 +13,5 @@ You need to build **pose_estimation** module with `build_demos` script in OpenVI
  ```sh
  cd $INTEL_OPENVINO_DIR/deployment_tools/open_model_zoo/demos/build_demos.sh -DENABLE_PYTHON=ON  
  ```
+
+![demo](./resources/demo.gif)
