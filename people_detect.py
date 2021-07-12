@@ -22,11 +22,11 @@ class openvino_model:
 
     def model_load(self, ie, model_name, device='CPU', verbose=False):
         model_tmpl = './intel/{0}/FP16/{0}.{1}'
-        self.net   = ie.read_network(model_tmpl.format(model_name, 'xml'), model_tmpl.format(model_name, 'bin'))
-        self.exenet   = ie.load_network(self.net  , device)
-        self.iblob_name = list(self.exenet.input_info)
+        self.net    = ie.read_network(model_tmpl.format(model_name, 'xml'))
+        self.exenet = ie.load_network(self.net, device)
+        self.iblob_name  = list(self.exenet.input_info)
         self.iblob_shape = [ self.exenet.input_info[n].tensor_desc.dims for n in self.iblob_name]
-        self.oblob_name = list(self.exenet.outputs)
+        self.oblob_name  = list(self.exenet.outputs)
         self.oblob_shape = [ self.exenet.outputs[n].shape for n in self.oblob_name]
         self.device = device
         if verbose:
@@ -37,6 +37,7 @@ class openvino_model:
         for img, bname, bshape in zip(args, self.iblob_name, self.iblob_shape):
             n,c,h,w = bshape
             img = cv2.resize(img, (w,h))
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             img = img.transpose((2,0,1))
             img = img.reshape((n,c,h,w))
             inputs[bname] = img
